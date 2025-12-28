@@ -7,10 +7,10 @@
 	
     # 1. CASKS — Приложения с графическим интерфейсом (.app)
     casks = [
-      "ghostty"
       "zen"
       "docker-desktop"
       "steam"
+      "hiddify"
     ];
 
 	  # 2. BREWS — Консольные утилиты, которых нет в Nix или которые нужны именно из Brew

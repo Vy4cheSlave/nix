@@ -15,12 +15,12 @@
     pkgs.obsidian
     pkgs.vscodium
     pkgs.codex
-    # pkgs.alacritty
+    pkgs.ghostty-bin
+    pkgs.openvpn
     
     # DIY
     # pkgs.blender
-    # pkgs.ghostty
-    # (pkgs.callPackage ./throne-pkg.nix { })
+    (pkgs.callPackage ./throne-bin.nix { })
   ];
 
   programs.git = {

@@ -17,12 +17,6 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, ... }:
   let
-    ghosttyOverlay = final: prev: {
-      ghostty = final.callPackage ./ghostty/package.nix {
-        ghosttySrc = inputs.ghostty;
-      };
-    };
-
     configuration = { pkgs, ... }: {
       nixpkgs.config = {
         allowUnfree = true;
