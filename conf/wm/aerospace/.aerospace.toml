@@ -121,6 +121,9 @@ run = ["move-node-to-workspace 6"]
 [[on-window-detected]]
 if.app-id = "com.valvesoftware.steam"
 run = ["move-node-to-workspace 7"]
+[[on-window-detected]]
+if.app-id = "com.valvesoftware.steam.helper"
+run = ["move-node-to-workspace 7"]
 
 
 # Объявление режима биндингов 'main'
