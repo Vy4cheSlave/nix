@@ -2,6 +2,11 @@
 {
   imports = [
     ./modules/proxy-pac.nix
+    ./packages/btop.nix
+    ./packages/git.nix
+    ./packages/ghostty.nix
+    ./packages/aerospace.nix
+    ./packages/sketchybar.nix
   ];
 
   home.username = "vch";
@@ -11,40 +16,33 @@
   home.stateVersion = "25.11";
 
   home.packages = [
+    # cli
     pkgs.git
+    pkgs.openvpn
+    pkgs.tmux
+    pkgs.helix
+    pkgs.gnumake
+
+    # gui
     pkgs.obsidian
     pkgs.vscodium
     pkgs.codex
-    pkgs.ghostty-bin
-    pkgs.openvpn
+    pkgs.zoom-us
+
+    # manual gui
+    (pkgs.callPackage ./packages/throne-bin.nix { })
+    (pkgs.callPackage ./packages/zen-browser-bin.nix { })
     
     # DIY
     # pkgs.blender
-    (pkgs.callPackage ./throne-bin.nix { })
+
+    # fonts
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.jetbrains-mono
   ];
 
-  programs.git = {
-    enable = true;
-
-    settings = {
-      user = {
-        name = "Vy4cheSlave";
-        email = "slav.subocheff@yandex.ru";
-      };
-
-      init.defaultBranch = "main";
-      # pull.rebase = true;
-      # core.editor = "code --wait";
-
-      # опционально: удобные алиасы
-      alias = {
-        # st = "status -sb";
-        # co = "checkout";
-        # br = "branch";
-        # lg = "log --oneline --decorate --graph --all";
-      };
-    };
-  };
+  # Чтобы CLI-программы видели шрифт
+  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
 }

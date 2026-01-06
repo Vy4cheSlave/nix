@@ -11,8 +11,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-
-    ghostty.url = "github:ghostty-org/ghostty/256c3b9ffba19d6d18963dd34f719f8878d388f6";
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, ... }:
@@ -40,9 +38,6 @@
 
       # Necessary for using flakes on this system.
       # nix.settings.experimental-features = "nix-command flakes";
-
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -73,6 +68,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup"; # позволяет перезаписывать существующие конфиги в ~/.config
           home-manager.users.vch = import ./home.nix;
         }
 

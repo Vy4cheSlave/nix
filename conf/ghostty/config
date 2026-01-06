@@ -1,0 +1,14 @@
+# Настройки шрифта
+font-family = "JetBrains Mono Nerd Font Mono"
+font-size = 18
+
+# Цветовая схема
+theme = Catppuccin Mocha
+
+# Размеры окна в ячейках (символах)
+window-width = 80
+window-height = 24
+
+# Активируем шейдер, указывая путь к файлу внутри папки shaders
+custom-shader = shaders/glow-rgbsplit-twitchy.glsl
+# custom-shader = shaders/tft.glsl

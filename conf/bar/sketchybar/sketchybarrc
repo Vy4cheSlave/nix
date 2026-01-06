@@ -1,0 +1,90 @@
+#!/bin/sh
+
+CONFIG_DIR="$HOME/.config/sketchybar"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+AEROSPACE_BIN="${AEROSPACE_BIN:-aerospace}"
+
+# --- Events ---
+sketchybar --add event aerospace_workspace_change
+sketchybar --add event input_change AppleSelectedInputSourcesChangedNotification
+
+# --- Bar (catppuccin mocha) ---
+FONT_SIZE=14
+ICON_SIZE=16
+BAR_HEIGHT=$((FONT_SIZE + 10))
+BAR_COLOR=0xff1e1e2e
+TEXT_COLOR=0xffcdd6f4
+SURFACE_COLOR=0xff313244
+sketchybar --bar position=top height=$BAR_HEIGHT blur_radius=30 color=$BAR_COLOR
+
+# --- Defaults ---
+default=(
+  padding_left=5
+  padding_right=5
+  icon.font="JetBrainsMono Nerd Font:Bold:${ICON_SIZE}.0"
+  label.font="JetBrainsMono Nerd Font:Bold:${FONT_SIZE}.0"
+  icon.color=$TEXT_COLOR
+  label.color=$TEXT_COLOR
+  icon.padding_left=4
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=4
+)
+sketchybar --default "${default[@]}"
+
+# =========================
+# LEFT: AeroSpace workspaces
+# =========================
+SPACE_ICONS=("" "󰈹" "󰎚" "󰨞" "󰙯" "󰀶" "󰓓" "8" "9")
+
+for i in "${!SPACE_ICONS[@]}"; do
+  sid="$((i+1))"
+
+  sketchybar --add item "space.$sid" left \
+    --set "space.$sid" \
+      icon="${SPACE_ICONS[i]}" \
+      icon.drawing=on \
+      icon.padding_left=7 \
+      icon.padding_right=7 \
+      label.drawing=off \
+      update_freq=3 \
+      background.color=$SURFACE_COLOR \
+      background.corner_radius=5 \
+      background.height=25 \
+      background.drawing=off \
+      drawing=on \
+      script="/bin/sh $PLUGIN_DIR/space.sh" \
+      click_script="$AEROSPACE_BIN workspace $sid" \
+    --subscribe "space.$sid" aerospace_workspace_change
+done
+
+sketchybar --add item chevron left \
+           --set chevron icon= label.drawing=off
+
+sketchybar --add item front_app left \
+           --set front_app icon.drawing=on \
+                         script="/bin/sh $PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+# =========================
+# RIGHT: clock/volume/battery/kb_layout
+# =========================
+sketchybar --add item clock right \
+           --set clock update_freq=10 icon= script="/bin/sh $PLUGIN_DIR/clock.sh"
+
+sketchybar --add item volume right \
+           --set volume script="/bin/sh $PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change
+
+sketchybar --add item battery right \
+           --set battery update_freq=120 script="/bin/sh $PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change
+
+sketchybar --add item kb_layout right \
+           --set kb_layout icon=󰌌 script="/bin/sh $PLUGIN_DIR/kb_layout.sh" \
+           --subscribe kb_layout input_change
+
+# --- First run ---
+sketchybar --update
+sketchybar --trigger aerospace_workspace_change \
+           FOCUSED_WORKSPACE="$($AEROSPACE_BIN list-workspaces --focused)"

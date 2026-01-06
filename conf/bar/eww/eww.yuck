@@ -1,0 +1,268 @@
+;; rm -rf ~/.config/eww/ && cp -rf ~/nixos/conf/bar/eww ~/.config/eww && eww open bar --restart
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;						   Variable Section's							 ;;	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Window Section's							 ;;	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; bar window ;;
+(defwindow bar
+    :monitor 0 ;'[ "0", "<primary>" ]'
+    :geometry (geometry 
+        :x "0%"
+        :y "0%"
+        :width "100%"
+        :height "4%"
+        :anchor "top center"
+    )
+    :stacking "bottom"
+    :exclusive true ; Если true :anchor должен включать в себя center
+    (bar)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Widget Section's							 ;;	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; bar widget ;;
+(defwidget bar []
+    (box
+        :class "box_test"
+        :orientation "h"
+        (top)
+        (mid)
+        (bot)
+    )
+)
+
+;; top widget ;;
+(defwidget top []
+    (box
+        :class "box_test"
+        :orientation "h"
+        (workspaces)
+    )
+)
+;; mid widget ;;
+(defwidget mid []
+    (box
+        :class "box_test"
+        :orientation "h"
+        (box :class "box_test")
+        (clock)
+        (systray 
+            :class "box_test"
+            :class "systray"
+            :orientation "h"
+            :space-evenly false
+            :halign "end"
+        )
+    )
+)
+
+;; bot widget ;;
+(defwidget bot []
+    (box
+        :class "box_test"
+        :orientation "h"
+        (box
+            (circular-progress 
+                :thickness 4
+                :value {EWW_BATTERY?.BAT0.capacity}
+            )
+            (label
+            :class "text_test"
+            :text "| 🌯: ${EWW_BATTERY?.BAT0.capacity} |"
+        )
+        )
+    )
+)
+
+;; workspaces widget ;;
+(defwidget workspaces []
+	(box
+        :class "workspaces-container"
+        :orientation "h"
+        :space-evenly false
+        :halign "start"
+        (box
+            :visible false
+            {active_id}
+        )
+        (for entry in {workspaces_list}
+            (box
+                :class {active_id == entry.id ? "box_test" : ""}
+                (label
+                    :class "text_test"
+                    :text {entry.active_window_id != "null" ? entry.idx : "+"}
+                )
+            )
+        )
+    )
+)
+(deflisten active_id
+  :initial "null"
+  `sh -c 'scripts/current_workspace.sh'`
+)
+(deflisten workspaces_list
+  :initial "[]"
+  `sh -c 'scripts/workspaces.sh'`
+)
+
+;; clock widget ;;
+(defwidget clock []
+	(box
+        :class "box_test"
+        :orientation "h"
+        :space-evenly false
+        :halign "center"
+        (box
+            ; :class "box_test"
+            :halign "end"
+            (label
+                :class "text_test"
+                :text clock_hour
+            )
+        )
+        (box
+            ; :class "box_test"
+            :halign "center"
+            :valign "center"
+            (label
+                :class "text_test"
+                :text ":"
+            )
+        )
+        (box
+            ; :class "box_test"
+            :halign "start"
+            (label
+                :class "text_test"
+                :text clock_minute
+            )
+        )
+    )
+)
+(defpoll clock_hour :interval "5s" "date +%H")
+(defpoll clock_minute :interval "5s" "date +\%M")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+; test ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defwidget bar_test []
+    (centerbox
+        :orientation "h"
+        :class "outline"
+        (box 
+            :class "clock"
+            "| 🌯: ${EWW_BATTERY?.BAT0.capacity} |"
+        )
+        (box
+            :class "clock"
+            ; :text "${formattime(EWW_TIME, "%H:%M")}"
+            "${formattime(EWW_TIME, "%H:%M")}"
+        )
+        (box)
+    )
+)

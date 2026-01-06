@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   ############################
   # Finder
@@ -21,6 +20,7 @@
     tilesize = 48;                      # размер иконок Dock
     mineffect = "scale";                # анимация сворачивания окон
     orientation = "bottom";             # снизу (left/right тоже можно)
+    expose-animation-duration = 0.0;    # убирает задержку анимации Spaces
   };
 
   ############################
@@ -36,10 +36,13 @@
     NSAutomaticQuoteSubstitutionEnabled = false; # “умные кавычки”
     NSAutomaticDashSubstitutionEnabled = false; # замена -- на длинное тире
     NSAutomaticPeriodSubstitutionEnabled = false; # вставка точки двойным пробелом
+    _HIHideMenuBar = true; # Автоматически скрывать строку меню
+    NSAutomaticWindowAnimationsEnabled = false; # отключение анимаций окон
   };
 
   system.defaults.CustomUserPreferences.NSGlobalDomain = {
     "com.apple.swipescroll.selection" = true; # нормальное выделение при scroll
+    NSReduceMotion = true;                    # Уменьшить движение (рабочий ключ, но через CustomUserPreferences)
   };
 
   ############################
@@ -92,8 +95,17 @@
   # Применение изменений
   ############################
   system.activationScripts.reloadUI.text = ''
+    # Перезапуск процессов для применения настроек Dock и Finder
     /usr/bin/killall Dock || true
     /usr/bin/killall Finder || true
     /usr/bin/killall SystemUIServer || true
   '';
 }
+
+############################
+# Ручная настройка
+############################
+# дисплеи->разрешение экрана->масштабирование->1312x848
+#                           ->True Tone->true
+# универсальный доступ->указатель->размер указателя->второе деление слева
+# Универсальный доступ → Дисплей → Уменьшить движение
