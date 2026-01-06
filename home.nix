@@ -31,7 +31,7 @@
 
     # manual gui
     (pkgs.callPackage ./packages/throne-bin.nix { })
-    (pkgs.callPackage ./packages/zen-browser-bin.nix { })
+    # (pkgs.callPackage ./packages/zen-browser-bin.nix { })
     
     # DIY
     # pkgs.blender
