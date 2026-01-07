@@ -7,6 +7,8 @@
     ./packages/ghostty.nix
     ./packages/aerospace.nix
     ./packages/sketchybar.nix
+    ./packages/vscodium.nix
+    ./packages/zsh.nix
   ];
 
   home.username = "vch";
@@ -25,7 +27,7 @@
 
     # gui
     pkgs.obsidian
-    pkgs.vscodium
+    # pkgs.vscodium
     pkgs.codex
     pkgs.zoom-us
 
