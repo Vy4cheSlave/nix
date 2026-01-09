@@ -9,6 +9,7 @@
     ./packages/sketchybar.nix
     ./packages/vscodium.nix
     ./packages/zsh.nix
+    ./packages/helix.nix
   ];
 
   home.username = "vch";
@@ -22,14 +23,13 @@
     pkgs.git
     pkgs.openvpn
     pkgs.tmux
-    pkgs.helix
     pkgs.gnumake
 
     # gui
     pkgs.obsidian
-    # pkgs.vscodium
     pkgs.codex
     pkgs.zoom-us
+    # pkgs.whisky # (не поддерживается) # аналог bottles/port_proton на linux
 
     # manual gui
     (pkgs.callPackage ./packages/throne-bin.nix { })
@@ -41,6 +41,11 @@
     # fonts
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.jetbrains-mono
+
+    # X11 support on macOS
+    # pkgs.xquartz
+    # pkgs.quartz-wm
+    # pkgs.pkgsx86_64Darwin.rofi
   ];
 
   # Чтобы CLI-программы видели шрифт
