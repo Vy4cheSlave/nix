@@ -10,6 +10,7 @@
     ./packages/vscodium.nix
     ./packages/zsh.nix
     ./packages/helix.nix
+    ./packages/tmux.nix
   ];
 
   home.username = "vch";
@@ -22,8 +23,8 @@
     # cli
     pkgs.git
     pkgs.openvpn
-    pkgs.tmux
     pkgs.gnumake
+    pkgs.bat
 
     # gui
     pkgs.obsidian
