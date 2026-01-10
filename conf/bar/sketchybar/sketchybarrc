@@ -35,7 +35,7 @@ sketchybar --default "${default[@]}"
 # =========================
 # LEFT: AeroSpace workspaces
 # =========================
-SPACE_ICONS=("" "󰈹" "󰎚" "󰨞" "󰙯" "󰀶" "󰓓" "8" "9")
+SPACE_ICONS=("" "󰈹" "󰎚" "󰨞" "󰙯" "󰀶" "󰓓" "" "9")
 
 for i in "${!SPACE_ICONS[@]}"; do
   sid="$((i+1))"

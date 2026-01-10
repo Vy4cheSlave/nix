@@ -12,6 +12,7 @@
       "steam"
       # "porting-kit" # НЕНАДО ДЯДЯ
       "pearcleaner"
+      "blender"
     ];
 
 	  # 2. BREWS — Консольные утилиты, которых нет в Nix или которые нужны именно из Brew

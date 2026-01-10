@@ -125,6 +125,10 @@ run = ["move-node-to-workspace 7"]
 if.app-id = "com.valvesoftware.steam.helper"
 run = ["move-node-to-workspace 7"]
 
+[[on-window-detected]]
+if.app-id = "org.blenderfoundation.blender"
+run = ["move-node-to-workspace 8"]
+
 
 # Объявление режима биндингов 'main'
 # См.: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
