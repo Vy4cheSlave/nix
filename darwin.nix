@@ -40,9 +40,24 @@
     NSAutomaticWindowAnimationsEnabled = false; # отключение анимаций окон
   };
 
-  system.defaults.CustomUserPreferences.NSGlobalDomain = {
-    "com.apple.swipescroll.selection" = true; # нормальное выделение при scroll
-    NSReduceMotion = true;                    # Уменьшить движение (рабочий ключ, но через CustomUserPreferences)
+  system.defaults.CustomUserPreferences = {
+    NSGlobalDomain = {
+      "com.apple.swipescroll.selection" = true; # нормальное выделение при scroll
+      NSReduceMotion = true;                    # Уменьшить движение (рабочий ключ, но через CustomUserPreferences)
+    };
+    ############################
+    # Dock / Hot Corners
+    ############################
+    "com.apple.dock" = {
+      "wvous-tl-corner" = 1;
+      "wvous-tl-modifier" = 0;
+      "wvous-tr-corner" = 1;
+      "wvous-tr-modifier" = 0;
+      "wvous-bl-corner" = 1;
+      "wvous-bl-modifier" = 0;
+      "wvous-br-corner" = 1;
+      "wvous-br-modifier" = 0;
+    };
   };
 
   ############################

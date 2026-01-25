@@ -82,6 +82,8 @@ on-mode-changed = []
 
 # On-window-detected
 # osascript -e 'id of app "VSCodium"'
+# узнать все установлинные программы
+# mdfind "kMDItemContentType == 'com.apple.application-bundle'" | xargs -I {} mdls -name kMDItemCFBundleIdentifier "{}"
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
 run = ["move-node-to-workspace 1"]
@@ -91,6 +93,9 @@ run = ["move-node-to-workspace 1"]
 
 [[on-window-detected]]
 if.app-id = "app.zen-browser.zen"
+run = ["move-node-to-workspace 2"]
+[[on-window-detected]]
+if.app-id = "org.nixos.librewolf"
 run = ["move-node-to-workspace 2"]
 [[on-window-detected]]
 if.app-id = "com.apple.Safari"
@@ -128,7 +133,12 @@ run = ["move-node-to-workspace 7"]
 [[on-window-detected]]
 if.app-id = "org.blenderfoundation.blender"
 run = ["move-node-to-workspace 8"]
-
+[[on-window-detected]]
+if.app-id = "com.docker.docker"
+run = ["move-node-to-workspace 8"]
+[[on-window-detected]]
+if.app-id = "com.electron.dockerdesktop"
+run = ["move-node-to-workspace 8"]
 
 # Объявление режима биндингов 'main'
 # См.: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

@@ -11,6 +11,8 @@
     ./packages/zsh.nix
     ./packages/helix.nix
     ./packages/tmux.nix
+    ./packages/go.nix
+    ./packages/librefox.nix
   ];
 
   home.username = "vch";
@@ -25,6 +27,8 @@
     pkgs.openvpn
     pkgs.gnumake
     pkgs.bat
+    pkgs.poppler-utils # PDF rendering library
+    pkgs.clang
 
     # gui
     pkgs.obsidian

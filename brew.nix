@@ -10,15 +10,18 @@
       "zen"
       "docker-desktop"
       "steam"
-      # "porting-kit" # НЕНАДО ДЯДЯ
+      "porting-kit" # НЕНАДО ДЯДЯ
       "pearcleaner"
       "blender"
+      "libreoffice"
+      "libreoffice-language-pack"
     ];
 
 	  # 2. BREWS — Консольные утилиты, которых нет в Nix или которые нужны именно из Brew
     brews = [
       "mas" # позволяет находить ID из официального Mac App Store
       "tt" # tarantool утилита
+      # "go@1.24"
     ];
 
 	  # 3. MASAPPS — Приложения из официального Mac App Store (если нужно, по ID) (требуется "mas")

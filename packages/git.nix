@@ -10,10 +10,12 @@
       };
 
       init.defaultBranch = "main";
-      # pull.rebase = true;
-      # core.editor = "code --wait";
 
-      # опционально: удобные алиасы
+      # rerere = { # опасная хуйня у меня уже все успело 20 раз поламаться
+      #   enabled = true;
+      #   autoupdate = true;
+      # };
+
       alias = {
         # st = "status -sb";
         # co = "checkout";

@@ -70,6 +70,16 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4598977/darkreader-4.9.112.xpi";
             installation_mode = "force_installed";
           };
+          # YouTube NonStop:
+          "{0d7cafdd-501c-49ca-8ebb-e3341caaa55e}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/file/4187690/youtube_nonstop-0.9.2.xpi";
+            installation_mode = "force_installed";
+          };
+          # Chrome Mask
+          "chrome-mask@overengineer.dev" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/file/4618461/chrome_mask-8.0.0.xpi";
+            installation_mode = "force_installed";
+          };
         };
   
         /* ---- PREFERENCES ---- */

@@ -18,6 +18,10 @@
       # грузим твой конфиг p10k, если он существует
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
     '';
+
+    # programs.zsh.profileExtra = ''
+    #   source "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+    # '';
   };
 
   home.packages = [
