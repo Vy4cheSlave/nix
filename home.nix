@@ -28,13 +28,17 @@
     pkgs.gnumake
     pkgs.bat
     pkgs.poppler-utils # PDF rendering library
-    pkgs.clang
+    pkgs.ripgrep
+    # pkgs.clang
+    # pkgs.sdl3
+    # pkgs.wgpu-native
 
     # gui
     pkgs.obsidian
     pkgs.codex
     pkgs.zoom-us
     # pkgs.whisky # (не поддерживается) # аналог bottles/port_proton на linux
+    pkgs.qbittorrent
 
     # manual gui
     (pkgs.callPackage ./packages/throne-bin.nix { })

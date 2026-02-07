@@ -20,6 +20,13 @@ let
     "cloudflare.steamstatic.com"
   ];
 
+  # Домены для OpenVpn
+  openvpnDomains = [
+    "corp.company.com"
+    "intranet.company.local"
+    "internal.corp"
+  ];
+
   mkHostMatch = domains:
     lib.concatStringsSep " ||\n      "
       (map (d: ''dnsDomainIs(host, "${d}") || shExpMatch(host, "*.${d}")'') domains);
@@ -35,6 +42,14 @@ in
       if (isPlainHostName(host)) {
         return "DIRECT";
       }
+
+      // 1) OpenVPN
+      // Эти домены всегда через OpenVPN (DIRECT), чтобы не шли через SOCKS proxy
+      // if (
+      //   ${mkHostMatch openvpnDomains}
+      // ) {
+      //   return "DIRECT";
+      // }
 
       // 1) explicit DIRECT domains
       if (
