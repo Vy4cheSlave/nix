@@ -11,7 +11,7 @@ after-startup-command = []
 
 exec-on-workspace-change = [
   "/bin/bash", "-lc",
-  "/etc/profiles/per-user/vch/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE"
+  "/etc/profiles/per-user/vch/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE; case $AEROSPACE_FOCUSED_WORKSPACE in 2|4|5|6|9) /etc/profiles/per-user/vch/bin/aerospace layout accordion ;; esac"
 ]
 
 # Запускать AeroSpace при входе в систему
