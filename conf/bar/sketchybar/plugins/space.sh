@@ -13,18 +13,22 @@ count="$($AEROSPACE_BIN list-windows --workspace "$sid" --count 2>/dev/null)"
 count="${count:-0}"
 
 if [ -z "$focused" ]; then
-  sketchybar --set "$NAME" drawing=on background.drawing=off
+  sketchybar --set "$NAME" drawing=on background.drawing=off label.drawing=off
   exit 0
 fi
 
 if [ "$count" -eq 0 ] && [ "$sid" != "$focused" ]; then
-  sketchybar --set "$NAME" drawing=off background.drawing=off
+  sketchybar --set "$NAME" drawing=off background.drawing=off label.drawing=off
   exit 0
 fi
 
 sketchybar --set "$NAME" drawing=on
 if [ "$sid" = "$focused" ]; then
-  sketchybar --set "$NAME" background.drawing=on
+  if [ "$count" -gt 1 ]; then
+    sketchybar --set "$NAME" background.drawing=on label="." label.drawing=on
+  else
+    sketchybar --set "$NAME" background.drawing=on label.drawing=off
+  fi
 else
-  sketchybar --set "$NAME" background.drawing=off
+  sketchybar --set "$NAME" background.drawing=off label.drawing=off
 fi

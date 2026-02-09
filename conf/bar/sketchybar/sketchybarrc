@@ -45,8 +45,13 @@ for i in "${!SPACE_ICONS[@]}"; do
       icon="${SPACE_ICONS[i]}" \
       icon.drawing=on \
       icon.padding_left=7 \
-      icon.padding_right=7 \
+      icon.padding_right=4 \
       label.drawing=off \
+      label.font="JetBrainsMono Nerd Font:Bold:18.0" \
+      label.color=0xffa6e3a1 \
+      label.y_offset=9 \
+      label.padding_left=-6 \
+      label.padding_right=6 \
       update_freq=3 \
       background.color=$SURFACE_COLOR \
       background.corner_radius=5 \
