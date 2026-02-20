@@ -5,6 +5,10 @@
     package = pkgs.vscodium;
 
     profiles.default.userSettings = {
+      "update.mode" = "manual"; # manual/none
+      "extensions.autoCheckUpdates" = true;
+      "extensions.autoUpdate" = false;
+
       "window.zoomLevel" = 0.8;
       "keyboard.dispatch" = "keyCode";
 
