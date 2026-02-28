@@ -39,6 +39,7 @@
     pkgs.zoom-us
     # pkgs.whisky # (не поддерживается) # аналог bottles/port_proton на linux
     pkgs.qbittorrent
+    pkgs.mpv-unwrapped # pkgs.mpv pkgs.yt-dlp # на MacOS не собирается
 
     # manual gui
     (pkgs.callPackage ./packages/throne-bin.nix { })

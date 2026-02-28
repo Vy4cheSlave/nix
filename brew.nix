@@ -15,10 +15,12 @@
       "blender"
       "libreoffice"
       "libreoffice-language-pack"
+      "obs"
     ];
 
 	  # 2. BREWS — Консольные утилиты, которых нет в Nix или которые нужны именно из Brew
     brews = [
+      "yt-dlp" # "mpv"
       "mas" # позволяет находить ID из официального Mac App Store
       "tt" # tarantool утилита
       # "go@1.24"
