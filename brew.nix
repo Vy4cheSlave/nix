@@ -16,6 +16,7 @@
       "libreoffice"
       "libreoffice-language-pack"
       "obs"
+      "blackhole-2ch"
     ];
 
 	  # 2. BREWS — Консольные утилиты, которых нет в Nix или которые нужны именно из Brew
