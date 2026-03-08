@@ -6,6 +6,7 @@
   system.defaults.finder = {
     AppleShowAllExtensions = true;      # всегда показывать расширения файлов
     FXPreferredViewStyle = "clmv";      # Column View (удобно для навигации)
+    FXRemoveOldTrashItems = true;       # автоматически удалять из корзины через 30 дней
     ShowPathbar = true;                 # путь внизу окна Finder
     ShowStatusBar = true;               # статус-бар
     _FXShowPosixPathInTitle = true;     # полный POSIX-путь в заголовке окна
@@ -104,7 +105,6 @@
   # Звук запуска macOS
   ############################
   system.startup.chime = false;
-
 
   ############################
   # Применение изменений

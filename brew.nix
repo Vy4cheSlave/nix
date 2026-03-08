@@ -10,7 +10,7 @@
       "zen"
       "docker-desktop"
       "steam"
-      "porting-kit" # НЕНАДО ДЯДЯ
+      # "porting-kit" # НЕНАДО ДЯДЯ
       "pearcleaner"
       "blender"
       "libreoffice"
