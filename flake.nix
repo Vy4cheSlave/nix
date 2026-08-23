@@ -61,7 +61,7 @@
         # Подключаем внешние файлы конфигурации
         ./brew.nix
         ./darwin.nix
-        ./modules/proxy-pac-darwin.nix
+        # ./modules/proxy-pac-darwin.nix
 
         # Home Manager через nix-darwin
         home-manager.darwinModules.home-manager

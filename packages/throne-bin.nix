@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "throne";
-  version = "1.0.12";
+  version = "1.2.0";
 
   src = fetchzip {
     url = "github.com/throneproj/Throne/releases/download/${version}/Throne-${version}-macos-arm64.zip";
-    hash = "sha256-rUFdWBaLA3iYgr5GWkBXf5IzWIbXJHdShRne4DTguRA=";
+    hash = "sha256-pfhZiTxifhjoPiFwVltd3dLbgeCuHBd1B16pSCwCInY=";
     stripRoot = false;
   };
 

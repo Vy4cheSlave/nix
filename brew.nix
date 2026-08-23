@@ -12,19 +12,24 @@
       "steam"
       # "porting-kit" # НЕНАДО ДЯДЯ
       "pearcleaner"
-      "blender"
-      "libreoffice"
-      "libreoffice-language-pack"
+      # "blender" # хуйня нестабильная
+      "libreoffice" # этот вроде рабочий
+      # "libreoffice-language-pack"
       "obs"
       "blackhole-2ch"
+      "handbrake-app"
+      "kdenlive"
+      "openmtp"
+      "gimp"
     ];
 
 	  # 2. BREWS — Консольные утилиты, которых нет в Nix или которые нужны именно из Brew
     brews = [
-      "yt-dlp" # "mpv"
+      "yt-dlp" # "mpv" для скачивания видео с ютуба (вроде требуется ffmpeg)
       "mas" # позволяет находить ID из официального Mac App Store
       "tt" # tarantool утилита
-      # "go@1.24"
+      "go@1.26"
+      "expat"
     ];
 
 	  # 3. MASAPPS — Приложения из официального Mac App Store (если нужно, по ID) (требуется "mas")

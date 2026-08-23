@@ -20,7 +20,8 @@ let
     "cloudflare.steamstatic.com"
   ];
 
-  # Домены для OpenVpn
+  # Домены VPN-шлюзов, которые нельзя отправлять через локальный SOCKS.
+  # Иначе рабочий VPN начинает зависеть от "основного" прокси на 127.0.0.1:2080.
   openvpnDomains = [
     "corp.company.com"
     "intranet.company.local"
@@ -43,13 +44,12 @@ in
         return "DIRECT";
       }
 
-      // 1) OpenVPN
-      // Эти домены всегда через OpenVPN (DIRECT), чтобы не шли через SOCKS proxy
-      // if (
-      //   ${mkHostMatch openvpnDomains}
-      // ) {
-      //   return "DIRECT";
-      // }
+      // 1) OpenVPN / VPN gateways must go DIRECT (no dependency on SOCKS 127.0.0.1:2080)
+      if (
+        ${mkHostMatch openvpnDomains}
+      ) {
+        return "DIRECT";
+      }
 
       // 1) explicit DIRECT domains
       if (

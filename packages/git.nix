@@ -26,10 +26,19 @@
 
     includes = [
       {
-        condition = "gitdir:~/work/";
+        condition = "gitdir:~/work/spimex/";
         contents = {
           user = {
             name = "vyacheslav";
+            email = "vyacheslav.subochev@vkteam.ru";
+          };
+        };
+      }
+      {
+        condition = "gitdir:~/work/script-migration/";
+        contents = {
+          user = {
+            name = "Вячеслав Субочев";
             email = "vyacheslav.subochev@vkteam.ru";
           };
         };

@@ -63,13 +63,13 @@ for i in "${!SPACE_ICONS[@]}"; do
     --subscribe "space.$sid" aerospace_workspace_change
 done
 
-sketchybar --add item chevron left \
-           --set chevron icon= label.drawing=off
+# sketchybar --add item chevron left \
+#            --set chevron icon= label.drawing=off
 
-sketchybar --add item front_app left \
-           --set front_app icon.drawing=on \
-                         script="/bin/sh $PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
+# sketchybar --add item front_app left \
+#            --set front_app icon.drawing=on \
+#                          script="/bin/sh $PLUGIN_DIR/front_app.sh" \
+#            --subscribe front_app front_app_switched
 
 # =========================
 # RIGHT: clock/volume/battery/kb_layout

@@ -13,10 +13,21 @@
     };
 
     initContent = ''
+      # Загружаем переменные Home Manager в каждый интерактивный zsh.
+      # Это нужно для библиотек из Nix store (например, libmagic).
+      if [[ -r /etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh ]]; then
+        source /etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh
+      fi
+
       # грузим powerlevel10k из nixpkgs
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       # грузим твой конфиг p10k, если он существует
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+      eval "$(ssh-agent -s)" >/dev/null 
+      ssh-add ~/.ssh/id_ed25519 2>/dev/null
+
+      export PATH="/Library/Application Support/VKey.app/Contents/MacOS/:$PATH"
     '';
 
     # programs.zsh.profileExtra = ''

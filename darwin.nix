@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   ############################
   # Finder
@@ -109,13 +109,36 @@
   ############################
   # Применение изменений
   ############################
-  system.activationScripts.reloadUI.text = ''
+  system.activationScripts.postActivation.text = lib.mkAfter ''
+    # Fix Homebrew python@3.x pyexpat linkage on macOS 26.x
+    if [ -f /opt/homebrew/opt/expat/lib/libexpat.1.dylib ]; then
+      for so in /opt/homebrew/Cellar/python@3.*/*/Frameworks/Python.framework/Versions/3.*/lib/python3.*/lib-dynload/pyexpat.cpython-3*-darwin.so; do
+        if [ ! -f "$so" ]; then
+          continue
+        fi
+
+        if /usr/bin/otool -L "$so" | /usr/bin/grep -q "/usr/lib/libexpat.1.dylib"; then
+          /usr/bin/install_name_tool \
+            -change /usr/lib/libexpat.1.dylib /opt/homebrew/opt/expat/lib/libexpat.1.dylib \
+            "$so"
+          /usr/bin/codesign --sign - --force "$so"
+        fi
+      done
+    fi
+
     # Перезапуск процессов для применения настроек Dock и Finder
     /usr/bin/killall Dock || true
     /usr/bin/killall Finder || true
     /usr/bin/killall SystemUIServer || true
   '';
 }
+############################
+# Возможные ошибки
+############################
+# если не может получить доступ, например к https://cache.nixos.org:
+# - 1) проверь днс сети. не стоит ли там жестко какойто не понятный хост
+# - 2) раскоментируй 2-й вариант в make update
+# - 3) это все не гарантирует успеха
 
 ############################
 # Ручная настройка
@@ -127,3 +150,4 @@
 # ->Использовать функциональные клавиши F1, F2 и другие как стандартные->true
 # ->клавиши модификации->клавиша control (^)->глобус
 #                      ->клавиша с глобусом->^ Ctrl
+# Строка меню->Показывать фон строки меню

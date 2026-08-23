@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = [
-    pkgs.go_1_24
+    pkgs.go_1_26
     pkgs.grpcurl
   ];
 
