@@ -20,14 +20,31 @@ update:
 # 	sudo darwin-rebuild switch --flake "$(DARWIN_FLAKE)" $(NIX_NETWORK_OPTIONS)
 	sudo darwin-rebuild switch --flake ~/nix#vch
 
+.PHONY: history
+history:
+	nix profile history --profile /nix/var/nix/profiles/system
+
 .PHONY: clean-dry
 clean-dry:
-	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 30d --dry-run
+	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d --dry-run
+	nix-store --gc --print-dead
+
+.PHONY: clean-result
+clean-result:
+	[ ! -L /Users/vch/nix/result ] || unlink /Users/vch/nix/result
 
 .PHONY: clean
-clean:
-	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 30d
+clean: clean-result
+	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d
 	sudo nix-collect-garbage -d
+
+.PHONY: clean-apps-cache
+clean-apps-cache:
+	/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -r -domain local -domain system -domain user
+	killall Finder
+
+.PHONY: clean-all
+clean-all: clean clean-apps-cache
 
 .PHONY: push
 push:
